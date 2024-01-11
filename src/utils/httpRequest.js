@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const httpRequest = axios.create({
-    baseURL: 'https://192.168.1.166:45455/api',
+    baseURL: 'https://rightsageleaf87.conveyor.cloud/api/',
 });
 
 export const get = async (path, options = {}) => {

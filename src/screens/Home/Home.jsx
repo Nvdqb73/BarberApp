@@ -1,52 +1,32 @@
-import { useEffect } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchRoles } from '~/stores/slice/roleSlice';
-import { roleSelector } from '~/stores/selector';
-import * as roleServices from '~/services/roleServices';
-
-function Home() {
+import ServicesItem from '~/components/ServicesItem';
+import { fetchServices } from '~/stores/slice/servicesSlice';
+import { serviceSelector } from '~/stores/selector';
+function Home({ navigation }) {
     const dispatch = useDispatch();
-    const data = useSelector(roleSelector);
-    const { roles } = data;
-    // console.log('data', data);
+    const { servicesList } = useSelector(serviceSelector);
+
     useEffect(() => {
-        // dispatch(fetchRoles());
-        const fetchApi = async () => {
-            const res = await roleServices.getRole();
-            console.log('aa', res);
-        };
-        fetchApi();
+        dispatch(fetchServices());
     }, []);
 
     return (
-        <View style={{ flex: 1 }}>
-            <View style={{ width: '100%', height: '16.66%', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontSize: 34, fontWeight: 500, color: 'black' }}>Welcome Barber Shop</Text>
-            </View>
-            <View style={{ width: '100%', height: '16.66%', justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity
-                    style={{
-                        width: '60%',
-                        height: 60,
-                        borderRadius: 16,
-                        backgroundColor: 'green',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Text style={{ fontSize: 26, fontWeight: 400, color: 'white' }}>Add Role</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={{ flex: 1, borderWidth: 2 }}>
-                {/* {roles?.map((role) => (
-                    <Text
-                        key={role?.roleID}
-                        style={{ fontSize: 16, fontWeight: 400, color: 'black', margin: 8, marginBottom: 0 }}
-                    >
-                        {role?.roleName}
-                    </Text>
-                ))} */}
+        <View
+            style={{
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+            <View style={{ width: '94%', height: '100%', justifyContent: 'space-between' }}>
+                <ScrollView>
+                    {servicesList?.map((service, index) => (
+                        <ServicesItem key={index} data={service} navigation={navigation} />
+                    ))}
+                </ScrollView>
             </View>
         </View>
     );

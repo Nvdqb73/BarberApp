@@ -1,6 +1,11 @@
 const screens = {
     account: 'Account',
-    home: 'Home',
+    homeLayout: 'HomeLayout',
+    orderLayout: 'OrderLayout',
+    barberLayout: 'BarberLayout',
+    buyLayout: 'BuyLayout',
+    navigationTable: 'NavigationTable',
+    navigationDrawer: 'NavigationDrawer',
 };
 
 export default screens;

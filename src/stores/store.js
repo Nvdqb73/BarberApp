@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer as roleReducer } from './slice/roleSlice';
-
+import { reducer as bookingServiceReducer } from './slice/bookingServiceSlice';
+import { reducer as servicesReducer } from './slice/servicesSlice';
+import { reducer as serviceEmployeeReducer } from './slice/serviceEmployeeSlice';
 const store = configureStore({
     reducer: {
-        roles: roleReducer,
+        services: servicesReducer,
+        serviceEmployees: serviceEmployeeReducer,
+        bookingServices: bookingServiceReducer,
     },
 });
 
